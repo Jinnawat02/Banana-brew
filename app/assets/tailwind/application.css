@@ -1,8 +1,140 @@
 @import "tailwindcss";
 
-@theme {
-  --color-espresso: #3b2416;
-  --color-mocha: #6f4e37;
-  --color-latte: #c8a27a;
-  --color-cream: #f7f1e8;
+:root {
+  --crema: #fffcf5;
+  --paper: #ffffff;
+  --roast: #2b1b12;
+  --espresso: #2b1b12;
+  --mocha: #6b4a36;
+  --banana: #f4c430;
+  --banana-ink: #3a2a00;
+  --line: #eadfcf;
+  --ok: #1f6b45;
+  --ok-soft: #e1f3e8;
+  --danger: #a3261e;
+  --danger-soft: #fbe6e3;
+  --warn: #7a5200;
+  --warn-soft: #fdf1d3;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --crema: #17110d;
+    --paper: #221912;
+    --roast: #0f0a07;
+    --espresso: #f3e9dc;
+    --mocha: #c9ab93;
+    --banana-ink: #2b1e00;
+    --line: #3a2c22;
+    --ok: #7fd3a3;
+    --ok-soft: #173826;
+    --danger: #f2a39b;
+    --danger-soft: #3d1a16;
+    --warn: #f1cc78;
+    --warn-soft: #3a2c0c;
+  }
+}
+
+@theme inline {
+  --font-display: "Mitr", "Noto Sans Thai", system-ui, sans-serif;
+  --font-sans: "IBM Plex Sans Thai", "Noto Sans Thai", system-ui, sans-serif;
+
+  --color-crema: var(--crema);
+  --color-paper: var(--paper);
+  --color-roast: var(--roast);
+  --color-espresso: var(--espresso);
+  --color-mocha: var(--mocha);
+  --color-banana: var(--banana);
+  --color-banana-ink: var(--banana-ink);
+  --color-line: var(--line);
+  --color-ok: var(--ok);
+  --color-ok-soft: var(--ok-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+}
+
+@layer base {
+  body {
+    @apply bg-crema font-sans text-espresso antialiased;
+  }
+
+  h1, h2, h3 {
+    @apply font-display;
+  }
+
+  ::selection {
+    @apply bg-banana text-banana-ink;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-banana;
+  }
+
+  .field_with_errors {
+    display: contents;
+  }
+}
+
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5
+         text-sm font-medium transition cursor-pointer
+         disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+@utility badge {
+  @apply inline-block rounded-full px-2.5 py-1 text-xs font-medium;
+}
+
+@layer components {
+  /* ปุ่ม */
+  .btn-primary   { @apply btn bg-banana text-banana-ink hover:brightness-95; }
+  .btn-dark      { @apply btn bg-espresso text-crema hover:opacity-90; }
+  .btn-secondary { @apply btn border border-line hover:bg-paper; }
+  .btn-ghost     { @apply btn hover:bg-paper; }
+  .btn-danger    { @apply btn text-danger hover:bg-danger-soft; }
+
+  .label {
+    @apply mb-1 block text-sm font-medium;
+  }
+  .input {
+    @apply w-full rounded-lg border border-line bg-paper px-3 py-2.5
+           placeholder:text-mocha/60
+           focus:outline-none focus:ring-2 focus:ring-banana;
+  }
+  .field_with_errors .input,
+  .input-error {
+    @apply border-danger;
+  }
+  .hint  { @apply mt-1 text-sm text-mocha; }
+  .error { @apply mt-1 text-sm text-danger; }
+
+  .card {
+    @apply rounded-2xl border border-line bg-paper p-5;
+  }
+  .badge-ok      { @apply badge bg-ok-soft text-ok; }
+  .badge-danger  { @apply badge bg-danger-soft text-danger; }
+  .badge-warn    { @apply badge bg-warn-soft text-warn; }
+  .badge-neutral { @apply badge bg-line text-espresso; }
+  .price-tag {
+    @apply rounded-md bg-banana px-2 py-0.5 text-sm font-medium text-banana-ink;
+  }
+
+  .chip        { @apply shrink-0 rounded-full border border-line px-4 py-2 text-sm hover:bg-paper; }
+  .chip-active { @apply shrink-0 rounded-full bg-espresso px-4 py-2 text-sm text-crema; }
+
+  .flash-notice { @apply mb-6 rounded-lg bg-ok-soft px-4 py-3 text-sm text-ok; }
+  .flash-alert  { @apply mb-6 rounded-lg bg-danger-soft px-4 py-3 text-sm text-danger; }
+
+  trix-toolbar .trix-button-group {
+    @apply rounded-t-lg border-line bg-paper;
+  }
+  trix-editor {
+    @apply min-h-32 rounded-b-lg border border-line bg-paper p-3
+           focus:outline-none focus:ring-2 focus:ring-banana;
+  }
+  .trix-content {
+    @apply leading-relaxed;
+  }
 }
