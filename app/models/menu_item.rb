@@ -1,3 +1,3 @@
 class MenuItem < ApplicationRecord
-  category :belongs_to
+  belongs_to :category
 end

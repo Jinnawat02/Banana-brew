@@ -18,8 +18,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_01_030327) do
   end
 
   create_table "menu_items", force: :cascade do |t|
-    t.string "category"
-    t.string "belongs_to"
     t.string "name"
     t.float "price"
     t.integer "inventory_count"
