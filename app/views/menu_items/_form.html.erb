@@ -1,0 +1,30 @@
+<%= form_with model: menu_item do |form| %>
+	<div class="mt-5">
+		<%= form.label :name %>
+		<%= form.text_field :name %>
+	</div>
+
+	<div class="mt-5">
+		<%= form.label :price %>
+		<%= form.text_field :price %>
+	</div>
+
+	<div class="mt-5">
+		<%= form.label :inventory_count %>
+		<%= form.text_field :inventory_count %>
+	</div>
+
+	<div class="mt-5">
+		<%= form.label :active %>
+		<%= form.radio_button :active, "True" %>
+		<%= form.radio_button :active, "False" %>
+	</div>
+
+	<div class="mt-5">
+		<%= form.collection_select :category_id, @categories, :id, :name, prompt: "Select a category" %>
+	</div>
+
+	<div>
+    <%= form.submit %>
+  </div>
+<% end %>
