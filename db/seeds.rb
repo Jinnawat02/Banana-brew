@@ -23,22 +23,24 @@ if Category.count.zero?
   p 'Seeded category model'
 end
 
+lorem = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores quasi saepe reiciendis deserunt error sed totam quos repudiandae sint dicta, consectetur doloribus laboriosam odit tempore officiis similique nulla quia alias!'
+
 menu_items = [
-  { name: 'Cake', price: 60, inventory_count: 10, active: true, category: Category.find_by(name: 'Dessert') },
-  { name: 'Brownie', price: 25, inventory_count: 25, active: true, category: Category.find_by(name: 'Dessert') },
-  { name: 'Pie', price: 30, inventory_count: 15, active: true, category: Category.find_by(name: 'Dessert') },
-  { name: 'Donut', price: 10, inventory_count: 40, active: true, category: Category.find_by(name: 'Dessert') },
-  { name: 'Brown Sugar', price: 40, inventory_count: 25, active: true, category: Category.find_by(name: 'Milk') },
-  { name: 'Matcha Milk', price: 45, inventory_count: 25, active: true, category: Category.find_by(name: 'Milk') },
-  { name: 'Hokkaido Milk', price: 40, inventory_count: 25, active: true, category: Category.find_by(name: 'Milk') },
-  { name: 'Americano', price: 50, inventory_count: 25, active: true, category: Category.find_by(name: 'Coffee') },
-  { name: 'Espresso', price: 40, inventory_count: 25, active: true, category: Category.find_by(name: 'Coffee') },
-  { name: 'Cappuccino', price: 40, inventory_count: 25, active: true, category: Category.find_by(name: 'Coffee') },
-  { name: 'Latte', price: 40, inventory_count: 25, active: true, category: Category.find_by(name: 'Coffee') },
-  { name: 'Matcha', price: 50, inventory_count: 25, active: true, category: Category.find_by(name: 'Tea') },
-  { name: 'Thai Tea', price: 30, inventory_count: 25, active: true, category: Category.find_by(name: 'Tea') }
+  { name: 'Cake', price: 60, inventory_count: 10, active: true, description: lorem,  category: Category.find_by(name: 'Dessert') },
+  { name: 'Brownie', price: 25, inventory_count: 25, active: true, description: lorem,  category: Category.find_by(name: 'Dessert') },
+  { name: 'Pie', price: 30, inventory_count: 15, active: true, description: lorem,  category: Category.find_by(name: 'Dessert') },
+  { name: 'Donut', price: 10, inventory_count: 40, active: true, description: lorem,  category: Category.find_by(name: 'Dessert') },
+  { name: 'Brown Sugar', price: 40, inventory_count: 25, active: true, description: lorem,  category: Category.find_by(name: 'Milk') },
+  { name: 'Matcha Milk', price: 45, inventory_count: 25, active: true, description: lorem,  category: Category.find_by(name: 'Milk') },
+  { name: 'Hokkaido Milk', price: 40, inventory_count: 25, active: true, description: lorem,  category: Category.find_by(name: 'Milk') },
+  { name: 'Americano', price: 50, inventory_count: 25, active: true, description: lorem,  category: Category.find_by(name: 'Coffee') },
+  { name: 'Espresso', price: 40, inventory_count: 25, active: true, description: lorem,  category: Category.find_by(name: 'Coffee') },
+  { name: 'Cappuccino', price: 40, inventory_count: 25, active: true, description: lorem,  category: Category.find_by(name: 'Coffee') },
+  { name: 'Latte', price: 40, inventory_count: 25, active: true, description: lorem,  category: Category.find_by(name: 'Coffee') },
+  { name: 'Matcha', price: 50, inventory_count: 25, active: true, description: lorem,  category: Category.find_by(name: 'Tea') },
+  { name: 'Thai Tea', price: 30, inventory_count: 25, active: true, description: lorem,  category: Category.find_by(name: 'Tea') }
 ]
 if MenuItem.count.zero?
-  menu_items.each { |item| MenuItem.create(name: item[:name], price: item[:price], inventory_count: item[:inventory_count], active: item[:active], category: item[:category]) }
+  menu_items.each { |item| MenuItem.create(name: item[:name], price: item[:price], inventory_count: item[:inventory_count], active: item[:active], description: item[:description], category: item[:category]) }
   p 'Seeded menu item model'
 end

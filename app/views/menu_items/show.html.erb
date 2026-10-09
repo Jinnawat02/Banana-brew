@@ -1,4 +1,22 @@
 <div>
-  <h1 class="font-bold text-4xl">MenuItems#show</h1>
-  <p>Find me in app/views/menu_items/show.html.erb</p>
+  <u><%= link_to 'Back to menu page', menu_items_path %></u>
+
+  <div class="mt-8">
+    <div class="grid aspect-[4/3] place-items-center rounded-2xl bg-banana/25 text-mocha"><svg class="size-16"><use href="#cup"></use></svg></div>
+
+    <div class="mt-3">
+      <p class="font-display text-sm"><%= @memu_item.category.name %></p>
+
+      <h3 class="font-display text-3xl font-medium"><%= @memu_item.name %></h3>
+
+      <div class="mt-3 flex items-baseline gap-3">
+        <span class="rounded-md bg-banana px-3 py-1 font-display text-xl text-banana-ink">฿<%= @memu_item.price %></span>
+        <span class="rounded-full bg-ok-soft px-2.5 py-1 text-xs font-medium text-ok w-50"><%= @memu_item.inventory_count %></span>
+      </div>
+
+      <% if @memu_item.description.present? %>
+        <p class="mt-3 font-display text-sm text-ok"><%= @memu_item.description %></p>
+      <% end %>
+    </div>
+  </div>
 </div>
