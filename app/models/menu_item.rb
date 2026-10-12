@@ -1,4 +1,5 @@
 class MenuItem < ApplicationRecord
+  has_rich_text :description
   validates :name, presence: true
   validates :price, presence: true
   validates :inventory_count, presence: true

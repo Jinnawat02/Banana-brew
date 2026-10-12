@@ -4,7 +4,9 @@ class MenuItemsController < ApplicationController
   before_action :set_categories, only: %i[index new create edit update]
 
   def index
-    @menu_items = MenuItem.by_category(params[:category]).where(active: true)
+    @menu_items = MenuItem.with_rich_text_description
+                          .by_category(params[:category])
+                          .where(active: true)
   end
 
   def show
@@ -52,7 +54,7 @@ class MenuItemsController < ApplicationController
   def menu_item_params
     params.expect(
       menu_item: [
-        :name, :price, :inventory_count, :active, :category_id
+        :name, :price, :inventory_count, :active, :category_id, :description
       ]
     )
   end
