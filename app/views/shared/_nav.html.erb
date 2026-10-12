@@ -5,7 +5,12 @@
     </a>
     <div class="ml-auto flex items-center gap-2 text-sm">
       <a href="#cart" class="rounded-full bg-banana px-3 py-1.5 font-medium text-banana-ink">Cart</a>
-      <a href="#login" class="rounded-full px-3 py-1.5 hover:bg-white/10">Login</a>
+      
+      <% if authenticated? %>
+        <%= link_to "Logout", session_path, data: { turbo_method: :delete }, class: 'rounded-full px-3 py-1.5 hover:bg-white/10' %>
+      <% else %>
+        <%= link_to "Login", new_session_path, class: 'rounded-full px-3 py-1.5 hover:bg-white/10' %>
+      <% end %>
     </div>
   </div>
 </nav>

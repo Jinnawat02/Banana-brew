@@ -1,7 +1,7 @@
 class MenuItemsController < ApplicationController
-  allow_unauthenticated_access
-  before_action :set_menu_item, only: %i[show edit update destroy]
-  before_action :set_categories, only: %i[index new create edit update]
+  allow_unauthenticated_access only: %i[ index show ]
+  before_action :set_menu_item, only: %i[ show edit update destroy ]
+  before_action :set_categories, only: %i[ index new create edit update ]
 
   def index
     @menu_items = MenuItem.with_rich_text_description
