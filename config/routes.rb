@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
-  root "menu_items#index"
+  root "dashboard#index"
 
   resources :menu_items
+
+  resources :categories
 end

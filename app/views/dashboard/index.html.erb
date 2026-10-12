@@ -1,0 +1,12 @@
+<div>
+  <% if authenticated? %>
+    <%= link_to 'Create new menu item', new_menu_item_path, class: "shrink-0 rounded-full px-4 py-2 text-sm bg-espresso text-roast border border-line hover:bg-paper" %>
+    <%= link_to 'Create new category', new_category_path, class: "shrink-0 rounded-full px-4 py-2 text-sm bg-espresso text-roast border border-line hover:bg-paper" %>
+  <% end %>
+  <%= render partial: "shared/category_tab", locals: { categories: @categories, selected: params[:category] } %>
+  <ul class="mt-8 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+    <% @menu_items.each do |item| %>
+      <%= render partial: "shared/menu_item", locals: { item: item } %>
+    <% end %>
+  </ul>
+</div>
