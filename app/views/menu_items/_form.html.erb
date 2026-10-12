@@ -1,30 +1,49 @@
-<%= form_with model: menu_item do |form| %>
+<%= form_with model: menu_item, class: "mt-6 space-y-5" do |form| %>
 	<div class="mt-5">
-		<%= form.label :name %>
-		<%= form.text_field :name %>
+		<%= form.label :name, class: "mb-1 block text-sm font-medium" %>
+		<%= form.text_field :name, class: "w-full rounded-lg border border-danger bg-paper px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-banana" %>
 	</div>
 
 	<div class="mt-5">
-		<%= form.label :price %>
-		<%= form.text_field :price %>
-	</div>
-
-	<div class="mt-5">
-		<%= form.label :inventory_count %>
-		<%= form.text_field :inventory_count %>
-	</div>
-
-	<div class="mt-5">
-		<%= form.label :active %>
-		<%= form.radio_button :active, "True" %>
-		<%= form.radio_button :active, "False" %>
-	</div>
-
-	<div class="mt-5">
+		<%= form.label :category_id, class: "mb-1 block text-sm font-medium" %>
 		<%= form.collection_select :category_id, @categories, :id, :name, prompt: "Select a category" %>
 	</div>
 
-	<div>
-    <%= form.submit %>
-  </div>
+	<div class="mt-5">
+		<%= form.label :price, class: "mb-1 block text-sm font-medium" %>
+		<%= form.text_field :price, class: "w-full rounded-lg border border-danger bg-paper px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-banana" %>
+	</div>
+
+	<div class="mt-5">
+		<%= form.label :inventory_count, class: "mb-1 block text-sm font-medium" %>
+		<%= form.text_field :inventory_count, class: "w-full rounded-lg border border-danger bg-paper px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-banana" %>
+	</div>
+
+	<div class="mt-5">
+		Status
+
+		<div class="flex gap-4">
+			<div>
+				<%= form.radio_button :active, true %>
+				<%= form.label :active, "True" %>
+			</div>
+			
+			<div>
+				<%= form.radio_button :active, false %>
+				<%= form.label :active, "False" %>
+			</div>
+		</div>
+	</div>
+
+	<div class="mt-5">
+		<%= form.label :description, class: "mb-1 block text-sm font-medium" %>
+		<%= form.text_field :description, class: "w-full rounded-lg border border-danger bg-paper px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-banana" %>
+	</div>
+
+	<div class="flex items-left gap-4">
+		<button class="rounded-lg bg-banana px-5 py-2.5 font-medium text-banana-ink hover:brightness-95">
+			<%= form.submit %>
+		</button>
+		<button><%= link_to 'Cancel', menu_item.id.present? ? menu_item_path(menu_item) : menu_items_path %></button>
+	</div>
 <% end %>
