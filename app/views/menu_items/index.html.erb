@@ -1,12 +1,36 @@
-<div>
-  <% if authenticated? %>
-    <%= link_to 'Create new menu item', new_menu_item_path, class: "shrink-0 rounded-full px-4 py-2 text-sm bg-espresso text-roast border border-line hover:bg-paper" %>
-  <% end %>
-  <%#= link_to 'Creat new category', new_category_path %>
-  <%= render partial: "shared/category_tab", locals: { categories: @categories, selected: params[:category] } %>
-  <ul class="mt-8 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-    <% @menu_items.each do |item| %>
-      <%= render partial: "shared/menu_item", locals: { item: item } %>
-    <% end %>
-  </ul>
+<div class="flex justify-end">
+  <%= link_to 'Create new menu item', new_menu_item_path, class: "shrink-0 rounded-full px-4 py-2 text-sm bg-espresso text-roast border border-line hover:bg-paper" %>
 </div>
+<div class="mt-6 overflow-x-auto rounded-2xl border border-line bg-paper">
+  <table class="w-full table-fixed text-sm">
+    <thead class="bg-crema text-left text-mocha">
+      <tr>
+        <th class="w-16 px-4 py-3 font-medium">ID</th>
+        <th class="px-4 py-3 font-medium">Name</th>
+        <th class="px-4 py-3 font-medium">Price</th>
+        <th class="px-4 py-3 font-medium">Inventory count</th>
+        <th class="px-4 py-3 font-medium">Active</th>
+        <th class="w-24 px-4 py-3 font-medium">Edit</th>
+        <th class="w-24 px-4 py-3 font-medium">Delete</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-line">
+      <% @menu_items.each do |menu_item| %>
+        <tr class="hover:bg-mocha">
+          <td class="px-4 py-3"><%= menu_item.id %></td>
+          <td class="px-4 py-3"><%= link_to menu_item.name, menu_item_path(menu_item) %></td>
+          <td class="px-4 py-3"><%= menu_item.price %></td>
+          <td class="px-4 py-3"><%= menu_item.inventory_count %></td>
+          <td class="px-4 py-3"><%= menu_item.active %></td>
+          <td class="px-4 py-3"><%= link_to "Edit", edit_menu_item_path(menu_item), class: "underline" %></td>
+          <td class="px-4 py-3">
+            <%= button_to "Delete", menu_item, method: :delete,
+                  class: "text-danger underline",
+                  form: { data: { turbo_confirm: "Delete #{menu_item.name}?" } } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+

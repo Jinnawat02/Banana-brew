@@ -40,10 +40,17 @@
     	<%= form.rich_textarea :description %>
 	</div>
 
-	<div class="flex items-left gap-4">
-		<button class="rounded-lg bg-banana px-5 py-2.5 font-medium text-banana-ink hover:brightness-95">
-			<%= form.submit %>
-		</button>
-		<button><%= link_to 'Cancel', menu_item.id.present? ? menu_item_path(menu_item) : menu_items_path %></button>
+	<div class="flex justify-between">
+		<div>
+			<% if menu_item.id.present? %>
+				<button><%= link_to 'Delete', data: { turb0_method: :delete } %></button>			
+			<% end %>
+		</div>
+		<div class="gap-4">
+			<button class="me-2"><%= link_to 'Cancel', menu_item.id.present? ? menu_item_path(menu_item) : menu_items_path %></button>
+			<button class="rounded-lg bg-banana px-5 py-2.5 font-medium text-banana-ink hover:brightness-95">
+				<%= form.submit %>
+			</button>
+		</div>
 	</div>
 <% end %>

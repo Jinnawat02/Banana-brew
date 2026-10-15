@@ -1,0 +1,29 @@
+<div class="flex justify-end">
+  <%= link_to 'Create new category', new_category_path, class: "shrink-0 rounded-full px-4 py-2 text-sm bg-espresso text-roast border border-line hover:bg-paper" %>  
+</div>
+<div class="mt-6 overflow-x-auto rounded-2xl border border-line bg-paper">
+  <table class="w-full table-fixed text-sm">
+    <thead class="bg-crema text-left text-mocha">
+      <tr>
+        <th class="w-16 px-4 py-3 font-medium">ID</th>
+        <th class="px-4 py-3 font-medium">Name</th>
+        <th class="w-24 px-4 py-3 font-medium">Edit</th>
+        <th class="w-24 px-4 py-3 font-medium">Delete</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-line">
+      <% @categories.each do |category| %>
+        <tr class="hover:bg-mocha">
+          <td class="px-4 py-3"><%= category.id %></td>
+          <td class="px-4 py-3"><%= category.name %></td>
+          <td class="px-4 py-3"><%= link_to "Edit", edit_category_path(category), class: "underline" %></td>
+          <td class="px-4 py-3">
+            <%= button_to "Delete", category, method: :delete,
+                  class: "text-danger underline",
+                  form: { data: { turbo_confirm: "Delete #{category.name}?" } } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

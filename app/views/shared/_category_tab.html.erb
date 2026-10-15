@@ -3,11 +3,11 @@
 <% inactive = "border border-line hover:bg-paper" %>
 
 <div class="mt-6 flex gap-2 overflow-x-auto pb-1">
-  <%= link_to 'All', menu_items_path, 
+  <%= link_to 'All', root_path, 
   class: class_names(base, selected.blank? ? active : inactive) %>
 
   <% categories.each do |category| %>
-    <%= link_to category.name, menu_items_path(category: category), 
+    <%= link_to category.name, root_path(category: category), 
           class: class_names(base, category_selected?(category, selected) ? active : inactive) %>
   <% end %>
 </div>

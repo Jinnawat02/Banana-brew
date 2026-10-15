@@ -1,6 +1,8 @@
+<% previous_path = request.referer ? URI(request.referer).path : nil %>
+
 <div>
   <div class="flex justify-between">
-    <u><%= link_to 'Back to menu page', menu_items_path %></u>
+    <u><%= link_to 'Back to menu page', previous_path == '/' ? previous_path : menu_items_path %></u>
     
     <% if authenticated? %>
       <div class="flex items-right gap-4">

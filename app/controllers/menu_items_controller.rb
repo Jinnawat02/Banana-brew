@@ -1,12 +1,10 @@
 class MenuItemsController < ApplicationController
-  allow_unauthenticated_access only: %i[ index show ]
+  allow_unauthenticated_access only: %i[ show ]
   before_action :set_menu_item, only: %i[ show edit update destroy ]
   before_action :set_categories, only: %i[ index new create edit update ]
 
   def index
-    @menu_items = MenuItem.with_rich_text_description
-                          .by_category(params[:category])
-                          .where(active: true)
+    @menu_items = MenuItem.by_category(params[:category])
   end
 
   def show

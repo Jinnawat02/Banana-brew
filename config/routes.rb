@@ -15,8 +15,9 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   root "dashboard#index"
+  get "dashboard", to: "dashboard#index"
 
   resources :menu_items
 
-  resources :categories
+  resources :categories, except: [ :show ]
 end
