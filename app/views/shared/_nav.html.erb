@@ -3,8 +3,12 @@
     <a class="font-display text-xl">
       <%=  link_to "Banana Brew", root_path %>
     </a>
+
     <div class="ml-auto flex items-center gap-2 text-sm">
-      <a href="#cart" class="rounded-full bg-banana px-3 py-1.5 font-medium text-banana-ink">Cart</a>
+      
+      <% if authenticated? %>
+        <%= link_to "Cart", root_path, class: "rounded-full bg-banana px-3 py-1.5 font-medium text-banana-ink" %>
+      <% end %>
       
       <% if authenticated? %>
         <%= link_to "Logout", session_path, data: { turbo_method: :delete }, class: 'rounded-full px-3 py-1.5 hover:bg-white/10' %>

@@ -1,5 +1,5 @@
 <div>
-  <% if authenticated? %>
+  <% if authenticated? && Current.user.has_role?(:admin) %>
     <%= link_to 'Menu items', menu_items_path, class: "shrink-0 rounded-full px-4 py-2 text-sm bg-espresso text-roast border border-line hover:bg-paper" %>
     <%= link_to 'Categories', categories_path, class: "shrink-0 rounded-full px-4 py-2 text-sm bg-espresso text-roast border border-line hover:bg-paper" %>
   <% end %>
