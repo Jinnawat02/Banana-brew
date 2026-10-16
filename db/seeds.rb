@@ -12,8 +12,11 @@ password = ENV['SEED_PASSWORD'] || 'password'
 find_admin = User.find_by(email_address: 'admin@example.com').presence
 find_customer = User.find_by(email_address: 'customer@example.com').presence
 unless find_admin && find_customer
-  User.create(email_address: 'admin@example.com', password: password)
-  User.create(email_address: 'customer@example.com', password: password)
+  admin = User.create(email_address: 'admin@example.com', password: password)
+  admin.add_role(:admin)
+
+  customer = User.create(email_address: 'customer@example.com', password: password)
+  customer.add_role(:customer)
   p 'Seeded user model'
 end
 
