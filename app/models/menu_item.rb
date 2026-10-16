@@ -4,7 +4,9 @@ class MenuItem < ApplicationRecord
   validates :price, presence: true
   validates :inventory_count, presence: true
   validates :active, inclusion: { in: [ true, false ] }
+
   belongs_to :category
+  has_many :order_items
 
   scope :by_category, ->(category) { where(category: category) if category.present? }
 end
