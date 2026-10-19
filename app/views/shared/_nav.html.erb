@@ -1,3 +1,5 @@
+<% cart_title = current_cart.empty? ? "Cart" : "Cart (#{current_cart.size})" %>
+
 <nav class="bg-roast text-[#fdf6ea] bg-espresso">
   <div class="mx-auto flex max-w-6xl items-center gap-4 px-4 py-3">
     <a class="font-display text-xl">
@@ -6,8 +8,10 @@
 
     <div class="ml-auto flex items-center gap-2 text-sm">
       
+      <%= link_to cart_title, cart_path, class: "rounded-full bg-banana px-3 py-1.5 font-medium text-banana-ink" %>
+
       <% if authenticated? %>
-        <%= link_to "Cart", root_path, class: "rounded-full bg-banana px-3 py-1.5 font-medium text-banana-ink" %>
+        <%= link_to 'My orders', orders_path, class: "rounded-full bg-banana px-3 py-1.5 font-medium text-banana-ink" %>
       <% end %>
       
       <% if authenticated? %>

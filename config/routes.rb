@@ -19,5 +19,10 @@ Rails.application.routes.draw do
 
   resources :menu_items
 
+  resource :cart, only: [ :show ]
+  resources :cart_items, only: [ :create, :update, :destroy ]
+  resource :checkout, only: [ :create ]
+  resources :orders, only: [ :index, :show ]
+
   resources :categories, except: [ :show ]
 end

@@ -1,0 +1,33 @@
+<% total = 0 %>
+
+<h1 class="font-display text-3xl">Order #<%= @order.id %></h1>
+
+<div class="mt-5 card">
+    <span class="text-sm font-light">
+        Created at: <%= l @order.created_at, format: :short%>
+    </span>
+
+    <ul class="mt-2 text-sm text-mocha">
+      <% @order.order_items.each do |item| %>
+        <li class="flex flex-col my-2">
+            <div class="text-lg">
+                <%= item.menu_item.name %>
+            </div>
+            <div class="text-xs">
+                Quantity: <%= item.quantity %>
+            </div>
+            <div class="text-xs">
+                Price: <%= item.unit_price %>
+            </div>
+            <div class="text-lg">
+                <% total += item.quantity * item.unit_price %>
+                Total per unit: <%= item.quantity * item.unit_price %>
+            </div>
+        </li>
+      <% end %>
+    </ul>
+
+    <div class="flex justify-end font-bold">
+        Total: <%= total %>
+    </div>
+</div>

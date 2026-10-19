@@ -1,0 +1,17 @@
+<h1 class="font-display text-3xl">Your orders</h1>
+
+<% @orders.each do |order| %>
+  <div class="mt-5 card">
+    <p class="font-medium">
+      <%= link_to "Order ##{order.id}", order_path(order), class: "underline" %>
+      · <%= l order.created_at, format: :short %>
+      · <%= number_to_currency(order.total, unit: "฿") %>
+    </p>
+
+    <ul class="mt-2 text-sm text-mocha">
+      <% order.order_items.each do |item| %>
+        <li><%= item.menu_item.name %> x <%= item.quantity %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
