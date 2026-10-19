@@ -17,17 +17,17 @@
                 Quantity: <%= item.quantity %>
             </div>
             <div class="text-xs">
-                Price: <%= item.unit_price %>
+                Price: <%= number_to_currency(item.unit_price, unit: "฿") %>
             </div>
             <div class="text-lg">
                 <% total += item.quantity * item.unit_price %>
-                Total per unit: <%= item.quantity * item.unit_price %>
+                Total per unit: <%= number_to_currency(item.quantity * item.unit_price, unit: "฿") %>
             </div>
         </li>
       <% end %>
     </ul>
 
     <div class="flex justify-end font-bold">
-        Total: <%= total %>
+        Total: <%= number_to_currency(total, unit: "฿") %>
     </div>
 </div>

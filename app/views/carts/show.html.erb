@@ -4,12 +4,28 @@
     <%= link_to "Back to home page", root_path, class: "underline" %>
   </div>
 <% else %>
-  <div class="flex flex-col justify-center items-start m-2 p-4 rounded-sm bg-mocha">
+  <div class="flex flex-col justify-center items-start m-2 p-4 rounded-sm bg-mocha text-crema">
     <% @lines.each do |line| %>
-      <div class="my-2 text-crema text-xl">
-        <%= line.menu_item.name %> | <%= number_to_currency(line.menu_item.price, unit: "฿") %> | <%= line.quantity %> | total: <%= number_to_currency(line.sub_total, unit: "฿") %>
+      <div class="my-2 flex w-full flex-wrap items-center gap-3 text-xl">
+        <span class="flex-grow"><%= line.menu_item.name %></span>
+        <span><%= number_to_currency(line.menu_item.price, unit: "฿") %></span>
+
+        <%= form_with url: cart_item_path(line.menu_item), method: :patch, class: "flex items-center gap-2" do |f| %>
+          <%= f.number_field :quantity, value: line.quantity, min: 0,
+                class: "w-20 rounded-sm px-2 py-1 text-espresso bg-crema" %>
+          <%= f.submit "Update", class: "cursor-pointer underline text-base" %>
+        <% end %>
+
+        <span class="w-36 text-right">total: <%= number_to_currency(line.sub_total, unit: "฿") %></span>
+
+        <%= button_to "Remove", cart_item_path(line.menu_item), method: :delete,
+              class: "cursor-pointer underline text-base" %>
       </div>
     <% end %>
+
+    <p class="self-end mt-4 text-xl">
+      Total: <%= number_to_currency(@lines.sum(&:sub_total), unit: "฿") %>
+    </p>
 
     <div class="self-end m-2 p-2 border border-black rounded-sm">
       <% if authenticated? %>
@@ -19,5 +35,4 @@
       <% end %>
     </div>
   </div>
-
 <% end %>
