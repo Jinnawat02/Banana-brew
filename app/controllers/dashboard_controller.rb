@@ -5,6 +5,7 @@ class DashboardController < ApplicationController
     @menu_items = MenuItem.with_rich_text_description
                       .by_category(params[:category])
                       .where(active: true)
+                      .where("inventory_count > ?", 0)
     @categories = Category.order(:name)
   end
 
