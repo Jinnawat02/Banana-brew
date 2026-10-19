@@ -36,6 +36,19 @@
   </fieldset>
 
   <div>
+    <%= form.label :image, class: "label" %>
+
+    <% if menu_item.image.attached? && menu_item.image.persisted? %>
+      <%= image_tag menu_item.image, alt: menu_item.name,
+            class: "mb-3 aspect-[4/3] w-48 rounded-lg object-cover" %>
+    <% end %>
+
+    <%= form.file_field :image, accept: MenuItem::IMAGE_TYPES.join(","), class: "input" %>
+    <p class="hint">JPEG, PNG or WebP, up to 5 MB. Leave empty to keep the current image.</p>
+  </div>
+
+
+  <div>
     <%= form.label :description, class: "label" %>
     <%= form.rich_textarea :description %>
   </div>

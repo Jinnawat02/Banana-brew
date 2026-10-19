@@ -13,8 +13,9 @@
 </div>
 
 <div class="mt-6 grid gap-8 md:grid-cols-2">
-  <div class="grid aspect-[4/3] place-items-center rounded-2xl bg-banana/25 text-mocha"><svg class="size-16"><use href="#cup"></use></svg></div>
-
+  <div class="grid aspect-[4/3] place-items-center overflow-hidden rounded-2xl bg-banana/25 text-mocha">
+    <%= menu_item_image(@menu_item) %>
+  </div>
   <div>
     <p class="font-display text-sm text-mocha"><%= @menu_item.category.name %></p>
     <h1 class="page-title mt-1"><%= @menu_item.name %></h1>

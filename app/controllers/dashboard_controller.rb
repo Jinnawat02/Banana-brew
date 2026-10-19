@@ -3,6 +3,7 @@ class DashboardController < ApplicationController
 
   def index
     @menu_items = MenuItem.with_rich_text_description
+                      .with_attached_image
                       .by_category(params[:category])
                       .where(active: true)
                       .where("inventory_count > ?", 0)

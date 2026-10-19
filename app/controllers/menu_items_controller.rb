@@ -52,7 +52,7 @@ class MenuItemsController < ApplicationController
   def menu_item_params
     params.expect(
       menu_item: [
-        :name, :price, :inventory_count, :active, :category_id, :description
+        :name, :price, :inventory_count, :active, :category_id, :description, :image
       ]
     )
   end
