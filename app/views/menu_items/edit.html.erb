@@ -1,1 +1,9 @@
-<%= render "form", menu_item: @menu_item, categories: @categories %>
+<div class="mx-auto max-w-2xl">
+  <div class="page-header">
+    <h1 class="page-title">Edit <%= @menu_item.name %></h1>
+    <%= button_to "Delete", @menu_item, method: :delete, class: "btn-danger",
+          form: { data: { turbo_confirm: "Delete #{@menu_item.name}?" } } %>
+  </div>
+
+  <%= render "form", menu_item: @menu_item, categories: @categories %>
+</div>

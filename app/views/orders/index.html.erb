@@ -1,17 +1,28 @@
-<h1 class="font-display text-3xl">Your orders</h1>
+<h1 class="page-title mb-6">Your orders</h1>
 
-<% @orders.each do |order| %>
-  <div class="mt-5 card">
-    <p class="font-medium">
-      <%= link_to "Order ##{order.id}", order_path(order), class: "underline" %>
-      · <%= l order.created_at, format: :short %>
-      · <%= number_to_currency(order.total, unit: "฿") %>
-    </p>
+<% if @orders.empty? %>
+  <div class="empty-state">
+    <p>No orders yet.</p>
+    <%= link_to "Browse menu", root_path, class: "btn-primary mt-4" %>
+  </div>
+<% else %>
+  <div class="space-y-4">
+    <% @orders.each do |order| %>
+      <div class="card">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <%= link_to "Order ##{order.id}", order_path(order), class: "link font-medium" %>
+          <span class="font-medium"><%= baht(order.total) %></span>
+        </div>
+        <p class="mt-1 text-xs text-mocha">
+          <%= l order.created_at, format: :short %> · <span class="badge-neutral"><%= order.status %></span>
+        </p>
 
-    <ul class="mt-2 text-sm text-mocha">
-      <% order.order_items.each do |item| %>
-        <li><%= item.menu_item.name %> x <%= item.quantity %></li>
-      <% end %>
-    </ul>
+        <ul class="mt-3 text-sm text-mocha">
+          <% order.order_items.each do |item| %>
+            <li><%= item.menu_item.name %> × <%= item.quantity %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
   </div>
 <% end %>

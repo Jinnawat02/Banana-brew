@@ -1,33 +1,22 @@
-<%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
-<%= tag.div(flash[:notice], style: "color:green") if flash[:notice] %>
+<div class="mx-auto mt-8 max-w-md">
+  <%= form_with url: session_path, class: "card space-y-5" do |form| %>
+    <h1 class="page-title">Sign in</h1>
 
-<%= form_with url: session_path, class: "flex justify-center items-center h-100" do |form| %>
-  <div class="mt-8 space-y-4 rounded-2xl border border-line bg-paper p-6 w-200">
-    <div class="mt-2 mb-4">
-      <%= form.label :email_address, class: "mb-1 block text-sm font-medium" %>
-      <%= form.email_field :email_address, required: true, 
-        autofocus: true, autocomplete: "username", 
-        placeholder: "Enter your email address", 
-        value: params[:email_address], 
-        class: "w-full rounded-lg border border-line bg-paper px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-banana" %>
-      <br>
+    <div>
+      <%= form.label :email_address, class: "label" %>
+      <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username",
+            placeholder: "Enter your email address", value: params[:email_address], class: "input" %>
     </div>
 
-    <div class="mt-2 mb-4">
+    <div>
       <div class="flex justify-between">
-        <%= form.label :password, class: "mb-1 block text-sm font-medium" %>
-        <%= link_to "Forgot password?", new_password_path, class: "text-sm text-mocha hover:underline" %> 
+        <%= form.label :password, class: "label" %>
+        <%= link_to "Forgot password?", new_password_path, class: "text-sm text-mocha hover:underline" %>
       </div>
-
-      <%= form.password_field :password, required: true, 
-        autocomplete: "current-password", placeholder: "Enter your password", 
-        maxlength: 72,
-        class: "w-full rounded-lg border border-line bg-paper px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-banana" %>
-      <br>
+      <%= form.password_field :password, required: true, autocomplete: "current-password",
+            placeholder: "Enter your password", maxlength: 72, class: "input" %>
     </div>
 
-    <div class="flex justify-center">
-      <%= form.submit "Sign in", class: "w-100 rounded-lg bg-espresso px-4 py-3 font-medium text-crema hover:opacity-90" %>
-    </div>
-  </div>
-<% end %>
+    <%= form.submit "Sign in", class: "btn-dark w-full" %>
+  <% end %>
+</div>

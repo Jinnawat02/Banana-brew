@@ -1,26 +1,28 @@
-<div class="flex justify-end">
-  <%= link_to 'Create new category', new_category_path, class: "shrink-0 rounded-full px-4 py-2 text-sm bg-espresso text-roast border border-line hover:bg-paper" %>  
+<div class="page-header">
+  <h1 class="page-title">Categories</h1>
+  <%= link_to "New category", new_category_path, class: "btn-dark" %>
 </div>
-<div class="mt-6 overflow-x-auto rounded-2xl border border-line bg-paper">
-  <table class="w-full table-fixed text-sm">
-    <thead class="bg-crema text-left text-mocha">
+
+<div class="table-wrap">
+  <table class="table">
+    <thead>
       <tr>
-        <th class="w-16 px-4 py-3 font-medium">ID</th>
-        <th class="px-4 py-3 font-medium">Name</th>
-        <th class="w-24 px-4 py-3 font-medium">Edit</th>
-        <th class="w-24 px-4 py-3 font-medium">Delete</th>
+        <th class="w-16">ID</th>
+        <th>Name</th>
+        <th class="w-40"></th>
       </tr>
     </thead>
-    <tbody class="divide-y divide-line">
+    <tbody>
       <% @categories.each do |category| %>
-        <tr class="hover:bg-mocha">
-          <td class="px-4 py-3"><%= category.id %></td>
-          <td class="px-4 py-3"><%= category.name %></td>
-          <td class="px-4 py-3"><%= link_to "Edit", edit_category_path(category), class: "underline" %></td>
-          <td class="px-4 py-3">
-            <%= button_to "Delete", category, method: :delete,
-                  class: "text-danger underline",
-                  form: { data: { turbo_confirm: "Delete #{category.name}?" } } %>
+        <tr>
+          <td><%= category.id %></td>
+          <td><%= category.name %></td>
+          <td>
+            <div class="flex justify-end gap-1">
+              <%= link_to "Edit", edit_category_path(category), class: "btn-ghost btn-sm" %>
+              <%= button_to "Delete", category, method: :delete, class: "btn-danger btn-sm",
+                    form: { data: { turbo_confirm: "Delete #{category.name}?" } } %>
+            </div>
           </td>
         </tr>
       <% end %>

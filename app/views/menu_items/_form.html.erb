@@ -1,56 +1,47 @@
-<%= form_with model: menu_item, class: "mt-6 space-y-5" do |form| %>
-	<div class="mt-5">
-		<%= form.label :name, class: "mb-1 block text-sm font-medium" %>
-		<%= form.text_field :name, class: "w-full rounded-lg border border-danger bg-paper px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-banana" %>
-	</div>
+<%= form_with model: menu_item, class: "card mt-6 space-y-5" do |form| %>
+  <%= render "shared/form_errors", record: menu_item %>
 
-	<div class="mt-5">
-		<%= form.label :category_id, class: "mb-1 block text-sm font-medium" %>
-		<%= form.collection_select :category_id, @categories, :id, :name, prompt: "Select a category" %>
-	</div>
+  <div>
+    <%= form.label :name, class: "label" %>
+    <%= form.text_field :name, class: "input" %>
+  </div>
 
-	<div class="mt-5">
-		<%= form.label :price, class: "mb-1 block text-sm font-medium" %>
-		<%= form.text_field :price, class: "w-full rounded-lg border border-danger bg-paper px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-banana" %>
-	</div>
+  <div>
+    <%= form.label :category_id, "Category", class: "label" %>
+    <%= form.collection_select :category_id, categories, :id, :name, { prompt: "Select a category" }, class: "input" %>
+  </div>
 
-	<div class="mt-5">
-		<%= form.label :inventory_count, class: "mb-1 block text-sm font-medium" %>
-		<%= form.text_field :inventory_count, class: "w-full rounded-lg border border-danger bg-paper px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-banana" %>
-	</div>
+  <div class="grid gap-5 sm:grid-cols-2">
+    <div>
+      <%= form.label :price, class: "label" %>
+      <%= form.number_field :price, step: 0.01, min: 0, class: "input" %>
+    </div>
 
-	<div class="mt-5">
-		Status
+    <div>
+      <%= form.label :inventory_count, "Stock", class: "label" %>
+      <%= form.number_field :inventory_count, min: 0, class: "input" %>
+    </div>
+  </div>
 
-		<div class="flex gap-4">
-			<div>
-				<%= form.radio_button :active, true %>
-				<%= form.label :active, "True" %>
-			</div>
-			
-			<div>
-				<%= form.radio_button :active, false %>
-				<%= form.label :active, "False" %>
-			</div>
-		</div>
-	</div>
+  <fieldset>
+    <legend class="label">Status</legend>
+    <div class="flex gap-5 text-sm">
+      <label class="flex items-center gap-2">
+        <%= form.radio_button :active, true %> Active
+      </label>
+      <label class="flex items-center gap-2">
+        <%= form.radio_button :active, false %> Inactive
+      </label>
+    </div>
+  </fieldset>
 
-	<div class="mt-5">
-		<%= form.label :description, style: "display: block" %>
-    	<%= form.rich_textarea :description %>
-	</div>
+  <div>
+    <%= form.label :description, class: "label" %>
+    <%= form.rich_textarea :description %>
+  </div>
 
-	<div class="flex justify-between">
-		<div>
-			<% if menu_item.id.present? %>
-				<button><%= link_to 'Delete', data: { turb0_method: :delete } %></button>			
-			<% end %>
-		</div>
-		<div class="gap-4">
-			<button class="me-2"><%= link_to 'Cancel', menu_item.id.present? ? menu_item_path(menu_item) : menu_items_path %></button>
-			<button class="rounded-lg bg-banana px-5 py-2.5 font-medium text-banana-ink hover:brightness-95">
-				<%= form.submit %>
-			</button>
-		</div>
-	</div>
+  <div class="flex justify-end gap-2">
+    <%= link_to "Cancel", menu_item.persisted? ? menu_item_path(menu_item) : menu_items_path, class: "btn-secondary" %>
+    <%= form.submit class: "btn-primary" %>
+  </div>
 <% end %>

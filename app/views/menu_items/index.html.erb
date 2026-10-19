@@ -1,36 +1,41 @@
-<div class="flex justify-end">
-  <%= link_to 'Create new menu item', new_menu_item_path, class: "shrink-0 rounded-full px-4 py-2 text-sm bg-espresso text-roast border border-line hover:bg-paper" %>
+<div class="page-header">
+  <h1 class="page-title">Menu items</h1>
+  <%= link_to "New menu item", new_menu_item_path, class: "btn-dark" %>
 </div>
-<div class="mt-6 overflow-x-auto rounded-2xl border border-line bg-paper">
-  <table class="w-full table-fixed text-sm">
-    <thead class="bg-crema text-left text-mocha">
+
+<div class="table-wrap">
+  <table class="table">
+    <thead>
       <tr>
-        <th class="w-16 px-4 py-3 font-medium">ID</th>
-        <th class="px-4 py-3 font-medium">Name</th>
-        <th class="px-4 py-3 font-medium">Price</th>
-        <th class="px-4 py-3 font-medium">Inventory count</th>
-        <th class="px-4 py-3 font-medium">Active</th>
-        <th class="w-24 px-4 py-3 font-medium">Edit</th>
-        <th class="w-24 px-4 py-3 font-medium">Delete</th>
+        <th class="w-16">ID</th>
+        <th>Name</th>
+        <th class="text-right">Price</th>
+        <th class="text-right">Stock</th>
+        <th>Status</th>
+        <th class="w-40"></th>
       </tr>
     </thead>
-    <tbody class="divide-y divide-line">
+    <tbody>
       <% @menu_items.each do |menu_item| %>
-        <tr class="hover:bg-mocha">
-          <td class="px-4 py-3"><%= menu_item.id %></td>
-          <td class="px-4 py-3"><%= link_to menu_item.name, menu_item_path(menu_item) %></td>
-          <td class="px-4 py-3"><%= menu_item.price %></td>
-          <td class="px-4 py-3"><%= menu_item.inventory_count %></td>
-          <td class="px-4 py-3"><%= menu_item.active %></td>
-          <td class="px-4 py-3"><%= link_to "Edit", edit_menu_item_path(menu_item), class: "underline" %></td>
-          <td class="px-4 py-3">
-            <%= button_to "Delete", menu_item, method: :delete,
-                  class: "text-danger underline",
-                  form: { data: { turbo_confirm: "Delete #{menu_item.name}?" } } %>
+        <tr>
+          <td><%= menu_item.id %></td>
+          <td><%= link_to menu_item.name, menu_item_path(menu_item), class: "link" %></td>
+          <td class="text-right"><%= baht(menu_item.price) %></td>
+          <td class="text-right"><%= menu_item.inventory_count %></td>
+          <td>
+            <span class="<%= menu_item.active ? "badge-ok" : "badge-neutral" %>">
+              <%= menu_item.active ? "Active" : "Inactive" %>
+            </span>
+          </td>
+          <td>
+            <div class="flex justify-end gap-1">
+              <%= link_to "Edit", edit_menu_item_path(menu_item), class: "btn-ghost btn-sm" %>
+              <%= button_to "Delete", menu_item, method: :delete, class: "btn-danger btn-sm",
+                    form: { data: { turbo_confirm: "Delete #{menu_item.name}?" } } %>
+            </div>
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
 </div>
-

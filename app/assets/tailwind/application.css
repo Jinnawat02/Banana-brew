@@ -94,6 +94,25 @@
   .btn-secondary { @apply btn border border-line hover:bg-paper; }
   .btn-ghost     { @apply btn hover:bg-paper; }
   .btn-danger    { @apply btn text-danger hover:bg-danger-soft; }
+  .btn-sm        { @apply px-3 py-1.5 text-xs; }
+
+  .link { @apply underline underline-offset-2 hover:text-mocha; }
+
+  .page-header { @apply mb-6 flex flex-wrap items-center justify-between gap-3; }
+  .page-title  { @apply text-3xl font-medium; }
+
+  .empty-state { @apply rounded-2xl border border-dashed border-line px-5 py-12 text-center text-mocha; }
+
+  .nav-link { @apply rounded-full px-3 py-1.5 hover:bg-white/10; }
+  .nav-cta  { @apply rounded-full bg-banana px-3 py-1.5 font-medium text-banana-ink hover:brightness-95; }
+
+  .table-wrap { @apply overflow-x-auto rounded-2xl border border-line bg-paper; }
+  .table {
+    @apply w-full text-sm;
+    & th { @apply bg-crema px-4 py-3 text-left font-medium text-mocha; }
+    & td { @apply px-4 py-3; }
+    & tbody tr { @apply border-t border-line hover:bg-crema; }
+  }
 
   .label {
     @apply mb-1 block text-sm font-medium;

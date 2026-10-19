@@ -1,12 +1,14 @@
-<div>
-  <% if authenticated? && Current.user.has_role?(:admin) %>
-    <%= link_to 'Menu items', menu_items_path, class: "shrink-0 rounded-full px-4 py-2 text-sm bg-espresso text-roast border border-line hover:bg-paper" %>
-    <%= link_to 'Categories', categories_path, class: "shrink-0 rounded-full px-4 py-2 text-sm bg-espresso text-roast border border-line hover:bg-paper" %>
+<% if authenticated? && Current.user.has_role?(:admin) %>
+  <div class="flex justify-end gap-2">
+    <%= link_to "Menu items", menu_items_path, class: "btn-secondary btn-sm" %>
+    <%= link_to "Categories", categories_path, class: "btn-secondary btn-sm" %>
+  </div>
+<% end %>
+
+<%= render "shared/category_tab", categories: @categories, selected: params[:category] %>
+
+<ul class="mt-8 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+  <% @menu_items.each do |item| %>
+    <%= render "shared/menu_item", item: item %>
   <% end %>
-  <%= render partial: "shared/category_tab", locals: { categories: @categories, selected: params[:category] } %>
-  <ul class="mt-8 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-    <% @menu_items.each do |item| %>
-      <%= render partial: "shared/menu_item", locals: { item: item } %>
-    <% end %>
-  </ul>
-</div>
+</ul>

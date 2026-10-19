@@ -1,23 +1,17 @@
 <% cart_title = current_cart.empty? ? "Cart" : "Cart (#{current_cart.size})" %>
 
-<nav class="bg-roast text-[#fdf6ea] bg-espresso">
+<nav class="bg-roast text-[#fdf6ea]">
   <div class="mx-auto flex max-w-6xl items-center gap-4 px-4 py-3">
-    <a class="font-display text-xl">
-      <%=  link_to "Banana Brew", root_path %>
-    </a>
+    <%= link_to "Banana Brew", root_path, class: "font-display text-xl" %>
 
     <div class="ml-auto flex items-center gap-2 text-sm">
-      
-      <%= link_to cart_title, cart_path, class: "rounded-full bg-banana px-3 py-1.5 font-medium text-banana-ink" %>
+      <%= link_to cart_title, cart_path, class: "nav-cta" %>
 
       <% if authenticated? %>
-        <%= link_to 'My orders', orders_path, class: "rounded-full bg-banana px-3 py-1.5 font-medium text-banana-ink" %>
-      <% end %>
-      
-      <% if authenticated? %>
-        <%= link_to "Logout", session_path, data: { turbo_method: :delete }, class: 'rounded-full px-3 py-1.5 hover:bg-white/10' %>
+        <%= link_to "My orders", orders_path, class: "nav-link" %>
+        <%= button_to "Logout", session_path, method: :delete, class: "nav-link cursor-pointer" %>
       <% else %>
-        <%= link_to "Login", new_session_path, class: 'rounded-full px-3 py-1.5 hover:bg-white/10' %>
+        <%= link_to "Login", new_session_path, class: "nav-link" %>
       <% end %>
     </div>
   </div>
