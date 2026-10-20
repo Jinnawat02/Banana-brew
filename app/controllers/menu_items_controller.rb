@@ -1,6 +1,6 @@
 class MenuItemsController < ApplicationController
   allow_unauthenticated_access only: %i[ show ]
-  before_action :require_admin
+  before_action :require_admin, except: %i[ show ]
   before_action :set_menu_item, only: %i[ show edit update destroy ]
   before_action :set_categories, only: %i[ index new create edit update ]
 
