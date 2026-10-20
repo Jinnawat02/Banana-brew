@@ -7,6 +7,7 @@ class DashboardController < ApplicationController
                       .by_category(params[:category])
                       .where(active: true)
                       .where("inventory_count > ?", 0)
+                      .order(name: :asc)
     @categories = Category.order(:name)
   end
 
