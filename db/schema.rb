@@ -57,7 +57,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_15_071043) do
 
   create_table "menu_items", force: :cascade do |t|
     t.string "name"
-    t.float "price"
+    t.decimal "price", precision: 10, scale: 2
     t.integer "inventory_count"
     t.boolean "active"
     t.datetime "created_at", null: false

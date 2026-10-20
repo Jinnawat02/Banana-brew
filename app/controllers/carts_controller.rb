@@ -3,9 +3,5 @@ class CartsController < ApplicationController
 
   def show
     @lines = current_cart.lines
-
-    p @lines
-
-    @lines
   end
 end

@@ -52,8 +52,6 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
-
-  gem "rolify"
 end
 
 group :development do
@@ -70,3 +68,5 @@ end
 gem "tailwindcss-rails", "~> 4.6"
 
 gem "dotenv"
+
+gem "rolify"

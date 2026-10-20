@@ -6,4 +6,10 @@ class ApplicationController < ActionController::Base
 
   # Changes to the importmap will invalidate the etag for HTML responses
   stale_when_importmap_changes
+
+  def require_admin
+    unless Current.user.has_role?(:admin)
+      redirect_to root_path, alert: "Acess denied"
+    end
+  end
 end
