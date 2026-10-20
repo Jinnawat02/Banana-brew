@@ -5,7 +5,7 @@ class MenuItemsController < ApplicationController
   before_action :set_categories, only: %i[ index new create edit update ]
 
   def index
-    @menu_items = MenuItem.by_category(params[:category])
+    @menu_items = MenuItem.all
   end
 
   def show
