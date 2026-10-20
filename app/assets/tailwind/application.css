@@ -146,13 +146,6 @@
   .flash-notice { @apply mb-6 rounded-lg bg-ok-soft px-4 py-3 text-sm text-ok; }
   .flash-alert  { @apply mb-6 rounded-lg bg-danger-soft px-4 py-3 text-sm text-danger; }
 
-  trix-toolbar .trix-button-group {
-    @apply rounded-t-lg border-line bg-paper;
-  }
-  trix-editor {
-    @apply min-h-32 rounded-b-lg border border-line bg-paper p-3
-           focus:outline-none focus:ring-2 focus:ring-banana;
-  }
   .trix-content {
     @apply leading-relaxed;
     & h1 { @apply text-xl font-medium mt-3; }
@@ -161,5 +154,59 @@
     & blockquote { @apply border-l-4 border-line pl-3 italic; }
     & pre { @apply bg-paper rounded-md p-3 overflow-x-auto; }
     & a { @apply underline; }
+  }
+}
+
+/*
+ * Rich text field (Action Text / Trix)
+ *
+ * Kept outside @layer on purpose: actiontext.css is unlayered, and unlayered CSS
+ * always beats layered CSS. The .rich-text-field prefix makes these selectors more
+ * specific than Trix's defaults, so they win whatever order the files load in.
+ */
+.rich-text-field {
+  @apply overflow-hidden rounded-lg border border-line bg-paper
+         focus-within:ring-2 focus-within:ring-banana;
+
+  & trix-toolbar {
+    @apply border-b border-line bg-crema px-2 pt-2;
+  }
+  & trix-toolbar .trix-button-row {
+    @apply gap-2;
+  }
+  & trix-toolbar .trix-button-group {
+    @apply mb-2 ml-0 overflow-hidden rounded-md border border-line bg-paper;
+  }
+  & trix-toolbar .trix-button {
+    @apply border-0 text-espresso;
+  }
+  & trix-toolbar .trix-button:not(:first-child) {
+    @apply border-l border-line;
+  }
+  & trix-toolbar .trix-button:not(:disabled):hover {
+    @apply bg-crema;
+  }
+  & trix-toolbar .trix-button.trix-active {
+    @apply bg-banana/40 text-espresso;
+  }
+  & trix-toolbar .trix-dialog {
+    @apply rounded-b-lg border-x-0 border-b border-t-0 border-line bg-paper text-espresso shadow-md;
+  }
+  & trix-toolbar .trix-input--dialog {
+    @apply rounded-md border-line bg-crema text-espresso;
+  }
+
+  & trix-editor {
+    @apply min-h-40 rounded-none border-0 px-3 py-2.5 outline-none;
+  }
+  & trix-editor:empty:not(:focus)::before {
+    @apply text-mocha/60;
+  }
+}
+
+/* Trix icons are black SVG backgrounds; flip them so they stay visible in dark mode */
+@media (prefers-color-scheme: dark) {
+  .rich-text-field trix-toolbar .trix-button--icon::before {
+    filter: invert(1);
   }
 }

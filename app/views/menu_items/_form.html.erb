@@ -47,10 +47,12 @@
     <p class="hint">JPEG, PNG or WebP, up to 5 MB. Leave empty to keep the current image.</p>
   </div>
 
-
   <div>
     <%= form.label :description, class: "label" %>
-    <%= form.rich_textarea :description %>
+    <div class="rich-text-field">
+      <%= form.rich_textarea :description, placeholder: "Taste notes, ingredients, allergens…" %>
+    </div>
+    <p class="hint">Use the toolbar for bold text, lists and links.</p>
   </div>
 
   <div class="flex justify-end gap-2">

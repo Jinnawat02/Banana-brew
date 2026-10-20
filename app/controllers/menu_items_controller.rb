@@ -36,7 +36,7 @@ class MenuItemsController < ApplicationController
 
   def destroy
     @menu_item.destroy
-    redirect_to menu_items_path, noticed: "Menu item was successfully deleted."
+    redirect_to menu_items_path, notice: "Menu item was successfully deleted."
   end
 
   private
