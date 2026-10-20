@@ -12,10 +12,6 @@ class DashboardController < ApplicationController
 
   private
 
-  def set_categories
-    @categories = Category.order(:name)
-  end
-
   def menu_item_params
     params.expect(
       menu_item: [
