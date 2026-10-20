@@ -1,7 +1,7 @@
 <% previous_path = request.referer ? URI(request.referer).path : nil %>
 
 <div class="flex flex-wrap items-center justify-between gap-3">
-  <%= link_to previous_path == "/" ? "Back to menu" : "Back to previous", previous_path, class: "link text-sm" %>
+  <%= link_to "Back to menu", previous_path == '/' ? root_path : menu_items_path, class: "link text-sm" %>
 
   <% if authenticated? && Current.user.has_role?(:admin) %>
     <div class="flex gap-2">
