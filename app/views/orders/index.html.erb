@@ -17,9 +17,14 @@
           <%= l order.created_at, format: :short %> · <span class="badge-neutral"><%= order.status %></span>
         </p>
 
-        <ul class="mt-3 text-sm text-mocha">
+        <ul class="mt-3 space-y-2 text-sm text-mocha">
           <% order.order_items.each do |item| %>
-            <li><%= item.menu_item.name %> × <%= item.quantity %></li>
+            <li class="flex items-center gap-3">
+              <div class="grid size-12 shrink-0 place-items-center overflow-hidden rounded-lg bg-banana/25">
+                <%= menu_item_image(item.menu_item) %>
+              </div>
+              <span><%= item.menu_item.name %> × <%= item.quantity %></span>
+            </li>
           <% end %>
         </ul>
       </div>
